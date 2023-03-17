@@ -7,6 +7,7 @@ const StationSchema = new mongoose.Schema({
   Address2: { type: String },
   Address3: { type: String },
   Postcode: { type: String },
+  Town: { type: String },
   Phone: { type: String },
   Class1: { type: Number },
   Class2: { type: Number },
