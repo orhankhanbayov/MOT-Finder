@@ -1,16 +1,16 @@
 {
-  "name": "Mystery-Route",
+  "name": "What-MOT",
   "version": "0.0.0",
-  "description": "Mystery Route setup",
+  "description": "What mot setup",
   "license": "CC BY-NC-SA",
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
     "start:test": "MONGODB_URL='mongodb://0.0.0.0/whatmot' npm start",
     "testing": "jest",
-    "start test server": "JWT_SECRET=SUPER_SECRET npm run start:test",
-    "start server": "JWT_SECRET=SUPER_SECRET npm run start",
-    "test": "JWT_SECRET=SUPER_SECRET npm run testing"
+    "start test server": "npm run start:test",
+    "start server": "npm run start",
+    "test": "npm run testing"
   },
   "engines": {
     "node": ">=18.1.0"

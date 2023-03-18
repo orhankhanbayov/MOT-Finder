@@ -3,6 +3,6 @@ const router = express.Router();
 
 const StationController = require('../controllers/stations');
 
-router.get('/', StationController.List);
+router.post('/', StationController.List);
 
 module.exports = router;
