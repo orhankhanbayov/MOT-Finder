@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const StationSchema = new mongoose.Schema({
   SiteID: { type: Number },
-  TradingName: { type: String },
+  name: { type: String },
   Address1: { type: String },
   Address2: { type: String },
   Address3: { type: String },

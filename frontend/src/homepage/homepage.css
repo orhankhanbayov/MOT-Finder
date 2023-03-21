@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.logoimg {
+  height: 250px;
+  width: 350px;
+}
+
+.result-container {
+  border-radius: 25px;
+  border-style: solid;
+  width: 750px;
+  height: 600px;
+  overflow-y: auto;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+#address {
+  border-radius: 25px;
+  margin-left: 50px;
+  width: 550px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.results {
+  border-style: solid;
+  width: 500px;
+  height: 100px;
+}
+
+#locationimg {
+  height: 45px;
+  width: 60px;
+}
+
+.station {
+  border-radius: 15px;
+  border-style: solid;
+  height: 100px;
+  width: 500px;
+  margin-bottom: 10px;
+}
+
+#list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
