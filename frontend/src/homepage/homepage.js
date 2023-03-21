@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import background from '../public/images/background3.jpg';
 import './homepage.css';
 import logo from '../public/images/logo.png';
@@ -13,14 +14,14 @@ const HomePage = () => {
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition(function (position) {
-      SetUserLat(position.coords.latitude);
-      SetUserLong(position.coords.longitude);
+      SetUserLat((prev) => position.coords.latitude);
+      SetUserLong((prev) => position.coords.longitude);
     });
   };
 
   useEffect(() => {
     getLocation();
-  }, [reload]);
+  }, []);
 
   const getList = async () => {
     const data = { lat: userLat, long: userLong };
@@ -33,8 +34,13 @@ const HomePage = () => {
     });
     let js = await response.json();
     SetList((prev) => js);
+    console.log('im being executed');
     setReload(!reload);
   };
+
+  useEffect(() => {
+    getList();
+  }, [userLong, userLat]);
 
   return (
     <div
@@ -42,9 +48,9 @@ const HomePage = () => {
         backgroundImage: 'url(' + background + ')',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'cener',
+        backgroundPosition: 'center',
         height: '100vh',
-
+        width: '180vh',
         color: '#FFF5E2',
       }}
     >
@@ -60,7 +66,12 @@ const HomePage = () => {
                 type={'regions'}
                 apiKey={'AIzaSyCEzRPKQcPxZ-1OPZUuIzgp-i0OqgvS0Ts'}
                 onPlaceSelected={(place) => {
-                  console.log(place);
+                  SetUserLat((prev) => place.geometry.location.lat());
+                  SetUserLong((prev) => place.geometry.location.lng());
+                }}
+                options={{
+                  types: ['geocode'],
+                  componentRestrictions: { country: 'uk' },
                 }}
               />
               <input
@@ -68,7 +79,7 @@ const HomePage = () => {
                 type="image"
                 alt="locationimg"
                 src={location}
-                onClick={getList}
+                onClick={getLocation}
               />
             </div>
             <div id="list">

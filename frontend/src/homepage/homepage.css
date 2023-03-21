@@ -5,6 +5,13 @@
   overflow: hidden;
 }
 
+#root {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .logoimg {
   height: 250px;
   width: 350px;
@@ -30,6 +37,8 @@
   width: 550px;
   height: 40px;
   margin-bottom: 10px;
+  padding-left: 20px;
+  font-size: large;
 }
 
 .results {
@@ -44,6 +53,8 @@
 }
 
 .station {
+  padding-left: 15px;
+  padding-top: 15px;
   border-radius: 15px;
   border-style: solid;
   height: 100px;
@@ -55,4 +66,10 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.container-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
