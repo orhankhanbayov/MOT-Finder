@@ -25,13 +25,16 @@ const HomePage = () => {
 
   const getList = async () => {
     const data = { lat: userLat, long: userLong };
-    const response = await fetch('https://motfinder-api.onrender.com', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(
+      'https://motfinder-api.onrender.com/stations',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }
+    );
     let js = await response.json();
     SetList((prev) => js);
     console.log('im being executed');
