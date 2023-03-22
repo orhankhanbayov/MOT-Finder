@@ -25,7 +25,7 @@ const HomePage = () => {
 
   const getList = async () => {
     const data = { lat: userLat, long: userLong };
-    const response = await fetch('/stations', {
+    const response = await fetch('https://motfinder-api.onrender.com', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
