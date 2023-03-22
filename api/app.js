@@ -3,12 +3,15 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const JWT = require('jsonwebtoken');
-
+const cors = require('cors');
 const stationRouter = require('./routes/stations');
 
 const app = express();
-
-// setup for receiving JSON
+app.use(
+  cors({
+    origin: '*',
+  })
+); // setup for receiving JSON
 app.use(express.json());
 
 app.use(logger('dev'));
