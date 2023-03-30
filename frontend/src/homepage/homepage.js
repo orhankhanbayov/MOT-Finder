@@ -11,6 +11,7 @@ const HomePage = () => {
   const [userLat, SetUserLat] = useState(0);
   const [userLong, SetUserLong] = useState(0);
   const [reload, setReload] = useState(false);
+  let api = process.env.REACT_APP_GOOGLE_API_KEY;
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -67,7 +68,7 @@ const HomePage = () => {
               <Autocomplete
                 id="address"
                 type={'regions'}
-                apiKey={'AIzaSyCEzRPKQcPxZ-1OPZUuIzgp-i0OqgvS0Ts'}
+                apiKey={`${api}`}
                 onPlaceSelected={(place) => {
                   SetUserLat((prev) => place.geometry.location.lat());
                   SetUserLong((prev) => place.geometry.location.lng());
