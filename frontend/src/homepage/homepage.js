@@ -5,12 +5,14 @@ import './homepage.css';
 import logo from '../public/images/logo.png';
 import location from '../public/images/pin.png';
 import Autocomplete from 'react-google-autocomplete';
+import { Circles } from 'react-loader-spinner';
 
 const HomePage = () => {
   const [list, SetList] = useState([]);
   const [userLat, SetUserLat] = useState(0);
   const [userLong, SetUserLong] = useState(0);
   const [reload, setReload] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   let api = process.env.REACT_APP_GOOGLE_API_KEY;
 
   const getLocation = () => {
@@ -25,21 +27,26 @@ const HomePage = () => {
   }, []);
 
   const getList = async () => {
+    setSubmitting(true);
+
     const data = { lat: userLat, long: userLong };
-    const response = await fetch(
-      'https://motfinder-api.onrender.com/stations',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }
-    );
-    let js = await response.json();
-    SetList((prev) => js);
-    console.log('im being executed');
-    setReload(!reload);
+    try {
+      const response = await fetch(
+        'https://motfinder-api.onrender.com/stations',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      let js = await response.json();
+      SetList((prev) => js);
+      setReload(!reload);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -78,6 +85,7 @@ const HomePage = () => {
                   componentRestrictions: { country: 'uk' },
                 }}
               />
+
               <input
                 id="locationimg"
                 type="image"
@@ -85,6 +93,23 @@ const HomePage = () => {
                 src={location}
                 onClick={getLocation}
               />
+              {submitting ? (
+                <Circles
+                  height="20"
+                  width="20"
+                  color="#ffffff"
+                  ariaLabel="circles-loading"
+                  wrapperStyle={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  wrapperClass=""
+                  visible={true}
+                />
+              ) : (
+                ''
+              )}
             </div>
             <div id="list">
               {list &&
