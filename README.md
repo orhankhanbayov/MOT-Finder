@@ -89,4 +89,3 @@ To find the closest MOT stations:
 2. Click the "Use My Location" button to use your current location, or enter an address in the search bar.
 3. The application will display a list of nearby MOT stations, along with their contact information and distance from the specified location.
 
-Enjoy finding MOT stations with ease!
